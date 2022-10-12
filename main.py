@@ -1,6 +1,8 @@
 import time
 import pygame
 from random import randrange
+import datetime
+
 
 dysplay_width = 800
 dysplay_height = 600
@@ -20,6 +22,8 @@ y1 = dysplay_height/2
 x1_change = 0
 y1_change = 0
 
+
+
 #souradnice jídla
 foodx = randrange(0, dysplay_width - 20)
 foody = randrange(0, dysplay_height - 20)
@@ -38,7 +42,7 @@ def score(lenght_of_snake):
     score = font_style.render(f"Score: {lenght_of_snake-1}", True, "white")
     dysplay.blit(score, [20,20])
 
-
+jmeno = input("Zadej své jméno, dáme to pak do tabulky vítězů.: ")
 while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -83,9 +87,13 @@ while not game_over:
     clock.tick(snake_speed)
     print(snake_head)
 
-
+#zjistí datum a napíše do tabulky jméno, čas a body
+now = datetime.datetime.now().strftime("%m/%d/%Y")
 
 message("Konec hry","red")
+with open('score.txt', 'a') as f:
+    f.write(f"{jmeno},{lenght_of_snake-1},{now} \n")
+
 pygame.display.update()
 time.sleep(2)
 

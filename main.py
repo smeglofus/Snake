@@ -34,6 +34,9 @@ def message(msg,color):
 def had(snake_list):
     for cor in snake_list:
         pygame.draw.rect(dysplay, "green", [cor[0],cor[1], 10, 10])
+def score(lenght_of_snake):
+    score = font_style.render(f"Score: {lenght_of_snake-1}", True, "white")
+    dysplay.blit(score, [20,20])
 
 
 while not game_over:
@@ -74,6 +77,7 @@ while not game_over:
         del snake_list[0]
     print(snake_list)
     had(snake_list)
+    score(lenght_of_snake)
 
     pygame.display.update()
     clock.tick(snake_speed)

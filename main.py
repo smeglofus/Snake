@@ -3,9 +3,14 @@ import pygame
 from random import randrange
 import datetime
 
-
+#zákadní info
+clock = pygame.time.Clock()
+snake_list = []
+lenght_of_snake = 1
+snake_speed = 25
 dysplay_width = 800
 dysplay_height = 600
+
 
 pygame.init()
 dysplay = pygame.display.set_mode((dysplay_width,dysplay_height))
@@ -13,8 +18,6 @@ pygame.display.set_caption("Smeglofův had")
 game_over = False
 
 
-snake_list = []
-lenght_of_snake = 1
 #souradnice hada
 x1 = dysplay_width/2
 y1 = dysplay_height/2
@@ -29,16 +32,20 @@ foodx = randrange(0, dysplay_width - 20)
 foody = randrange(0, dysplay_height - 20)
 
 
-snake_speed = 25
+
 font_style = pygame.font.SysFont(None,50)
-clock = pygame.time.Clock()
+
+#
 def message(msg,color):
+    #vypíše zprávu konec hry.
     mesg = font_style.render(msg, True, color)
     dysplay.blit(mesg, [dysplay_width/2, dysplay_height/2])
 def had(snake_list):
+    #generuje tělo hada
     for cor in snake_list:
         pygame.draw.rect(dysplay, "green", [cor[0],cor[1], 10, 10])
 def score(lenght_of_snake):
+    #vypíše aktuální score
     score = font_style.render(f"Score: {lenght_of_snake-1}", True, "white")
     dysplay.blit(score, [20,20])
 
@@ -47,6 +54,7 @@ while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
+        #reaguje na zmáčknutí kláves a reaguje pohybem
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 x1_change = -10
@@ -60,13 +68,14 @@ while not game_over:
             elif event.key == pygame.K_DOWN:
                 x1_change = 0
                 y1_change = 10
+    #pokud se had dostane za hranice okna, nastává konec hry
     if x1 >= dysplay_width or x1 < 0 or y1 >= dysplay_height or y1 < 0:
         game_over = True
 
     x1 += x1_change
     y1 += y1_change
     dysplay.fill("black")
-
+    #pokud dojde ke kolizi hada s jídlem, hadovi se přidá jeden blok a jídlo se objevý na jiném poli.
     if x1 in range(foodx-10, foodx+10) and y1 in range(foody-10, foody+10):
         foodx = randrange(0, dysplay_width - 20)
         foody = randrange(0, dysplay_height - 20)

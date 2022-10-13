@@ -2,6 +2,7 @@ import time
 import pygame
 from random import randrange
 import datetime
+from player_name import *
 
 #zákadní info
 clock = pygame.time.Clock()
@@ -49,8 +50,13 @@ def score(lenght_of_snake):
     score = font_style.render(f"Score: {lenght_of_snake-1}", True, "white")
     dysplay.blit(score, [20,20])
 
-jmeno = input("Zadej své jméno, dáme to pak do tabulky vítězů.: ")
+#jmeno = input("Zadej své jméno, dáme to pak do tabulky vítězů.: ")
+if __name__ == "__main__":
+  app = Player()
+  app.mainloop()
 while not game_over:
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
@@ -100,11 +106,13 @@ while not game_over:
 now = datetime.datetime.now().strftime("%m/%d/%Y")
 
 message("Konec hry","red")
+with open("player_name.txt", "r") as name:
+    jmeno = name.read().rstrip()
 with open('score.txt', 'a') as f:
-    f.write(f"{jmeno},{lenght_of_snake-1},{now} \n")
+    f.write(f"Jméno: {jmeno}, body: {lenght_of_snake-1}, Datum: {now} \n")
 
 pygame.display.update()
-time.sleep(2)
+time.sleep(1)
 
 pygame.quit()
 quit()

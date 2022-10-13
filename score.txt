@@ -1,2 +1,1 @@
-patrik,1,10/12/2022 
-Patrik,10,10/12/2022 
+Jméno: Patrik, body: 1, Datum: 10/13/2022 

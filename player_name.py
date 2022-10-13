@@ -7,7 +7,7 @@ class Player(Tk):
 
     # configure the root window
     self.title('Player_score')
-    self.geometry('300x300')
+    self.geometry('200x100')
 
 
     self.label = Label(self, text='Get your name: ')
@@ -20,7 +20,7 @@ class Player(Tk):
 
     self.display = Button(height=2,
                      width=20,
-                     text="Show",
+                     text="OK",
                      command=self.button_clicked)
     self.display.pack()
 

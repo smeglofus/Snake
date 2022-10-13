@@ -4,6 +4,7 @@ from random import randrange
 import datetime
 from player_name import *
 from scoreboard import Scoreboard
+import json
 
 #zákadní info
 clock = pygame.time.Clock()
@@ -105,15 +106,25 @@ while not game_over:
 
 #zjistí datum a napíše do tabulky jméno, čas a body
 now = datetime.datetime.now().strftime("%m/%d/%Y")
-
+body = lenght_of_snake - 1
 message("Konec hry","red")
 with open("player_name.txt", "r") as name:
     jmeno = name.read().rstrip()
-with open('score.txt', 'a') as f:
-    f.write(f"Jméno: {jmeno}, body: {lenght_of_snake-1}, Datum: {now} \n")
-
+new_data = {
+    body: {
+        "Jmeno": jmeno,
+        "Datum": now,
+    }
+}
+with open('score.json', 'r') as f:
+    data = json.load(f)
+    data.update(new_data)
+with open('score.json', 'w') as f:
+    json.dump(data, f, indent=4)
 pygame.display.update()
 time.sleep(1)
+
+
 if __name__ == "__main__":
   scoreboard = Scoreboard()
   scoreboard.mainloop()

@@ -3,6 +3,7 @@ import pygame
 from random import randrange
 import datetime
 from player_name import *
+from scoreboard import Scoreboard
 
 #zákadní info
 clock = pygame.time.Clock()
@@ -113,6 +114,9 @@ with open('score.txt', 'a') as f:
 
 pygame.display.update()
 time.sleep(1)
+if __name__ == "__main__":
+  scoreboard = Scoreboard()
+  scoreboard.mainloop()
 
 pygame.quit()
 quit()

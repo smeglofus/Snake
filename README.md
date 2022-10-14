@@ -1,5 +1,5 @@
 # Snake
-Snake game project in Pygame
+Snake game project in Pygame with help of tkinter and json.
 
 #### Game asks you to give it your name:
 ![player_name](https://user-images.githubusercontent.com/115080043/195794018-26280452-2a29-4d8d-930d-19fab022da0b.png)

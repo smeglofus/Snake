@@ -1,14 +1,18 @@
 import re
 import json
 from tkinter import *
+from collections import OrderedDict
+
 
 top_10 = []
-
 with open('score.json') as f:
     hraci = json.load(f)
-    for polozka in hraci:
-        print(polozka)
-        top_10.append(hraci[polozka])
+    sort = OrderedDict(sorted(hraci.items(), key=lambda i: i[1]["Body"],reverse=True))
+    print(sort)
+    for polozka in sort:
+         if len(top_10) < 11:
+             top_10.append(sort[polozka])
+             print(len(top_10))
 
 
 high_score = '\n'.join(str(x) for x in top_10).strip("(){}','")

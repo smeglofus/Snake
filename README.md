@@ -8,5 +8,5 @@ Snake game project in Pygame
 ![game](https://user-images.githubusercontent.com/115080043/195794139-f5b8ab48-d6ba-4bfe-a664-4609ad287c2f.png)
 
 
-###when the game is over, game saves your score and show you how you doing in compare with others:
+### when the game is over, game saves your score and show you how you doing in compare with others:
 ![scoreboard](https://user-images.githubusercontent.com/115080043/195794149-94da9c40-bf9a-4612-9078-ba283449932a.png)

@@ -110,15 +110,19 @@ body = lenght_of_snake - 1
 message("Konec hry","red")
 with open("player_name.txt", "r") as name:
     jmeno = name.read().rstrip()
-new_data = {
-    body: {
-        "Jmeno": jmeno,
-        "Datum": now,
-    }
-}
+
 with open('score.json', 'r') as f:
     data = json.load(f)
-    data.update(new_data)
+
+player_id = len(data) + 1
+new_data = {
+    player_id: {
+        "Body": body,
+        "Jmeno": jmeno,
+        "Datum": now
+    }
+}
+data.update(new_data)
 with open('score.json', 'w') as f:
     json.dump(data, f, indent=4)
 pygame.display.update()

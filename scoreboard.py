@@ -4,24 +4,18 @@ from tkinter import *
 
 top_10 = []
 
-with open('score.json', 'r') as file:
-    data = file.read()
-
 with open('score.json') as f:
     hraci = json.load(f)
-    for i in range(100,0,-1):
-        try:
-            if hraci[str(i)]:
-                top_10.append((hraci[str(i)], f"Body: {i}"))
-        except:
-            pass
-#print(top_10)
+    for polozka in hraci:
+        print(polozka)
+        top_10.append(hraci[polozka])
 
 
 high_score = '\n'.join(str(x) for x in top_10).strip("(){}','")
 high_score = re.sub("[(){}<>'',]","", high_score)
 
 print(high_score)
+
 
 class Scoreboard(Tk):
   def __init__(self):

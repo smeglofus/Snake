@@ -28,5 +28,10 @@
         "Body": 0,
         "Jmeno": "Patrik",
         "Datum": "10/14/2022"
+    },
+    "7": {
+        "Body": 1,
+        "Jmeno": "Kamos",
+        "Datum": "10/16/2022"
     }
 }

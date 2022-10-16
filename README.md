@@ -13,9 +13,16 @@ Snake game project in Pygame with help of tkinter and json.
 
 
 
+## dependencies
+- tkinter
+- json
+- random
+- datetime
+- collections
+
 
 ## requirements
 - python 3.6+
 
 ## run
-python3 hangman.py
+python3 main.py

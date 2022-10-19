@@ -3,7 +3,7 @@ import pygame
 from random import randrange
 import datetime
 from player_name import *
-from scoreboard import Scoreboard
+from scoreboard import Scoreboard, save_score
 import json
 
 pygame.init()
@@ -50,32 +50,11 @@ def show_scoreboard():
     scoreboard = Scoreboard()
     scoreboard.mainloop()
 
-def save_score():
-    now = datetime.datetime.now().strftime("%m/%d/%Y")
-    body = LENGHT_OF_SNAKE - 1
-    message("Konec hry", "red")
-    with open("player_name.txt", "r") as name:
-        jmeno = name.read().rstrip()
-
-    with open('score.json', 'r') as f:
-        data = json.load(f)
-
-    player_id = len(data) + 1
-    new_data = {
-        player_id: {
-            "Body": body,
-            "Jmeno": jmeno,
-            "Datum": now
-        }
-    }
-    data.update(new_data)
-    with open('score.json', 'w') as f:
-        json.dump(data, f, indent=4)
 #pokud se had dostane za hranice okna, nastává konec hry
 def colision_with_wall():
     global  game_over
     if x1 >= DYSPLAY_WIDTH or x1 < 0 or y1 >= DYSPLAY_HEIGHT or y1 < 0:
-        save_score()
+        save_score(LENGHT_OF_SNAKE,message)
         game_over = True
 def eat_and_grow(foodx,foody):
     global LENGHT_OF_SNAKE

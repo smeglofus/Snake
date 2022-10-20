@@ -1,6 +1,5 @@
 from tkinter import *
 
-jmeno = ""
 class Player(Tk):
   def __init__(self):
     super().__init__()
@@ -25,11 +24,9 @@ class Player(Tk):
     self.display.pack()
 
   def button_clicked(self):
-      INPUT = self.inputtxt.get("1.0", "end-1c")
-      global jmeno
-      jmeno = INPUT
+      input = self.inputtxt.get("1.0", "end-1c")
       with open("player_name.txt", "w") as name:
-          name.write(f"{jmeno}")
+          name.write(f"{input}")
       self.destroy()
 
 
